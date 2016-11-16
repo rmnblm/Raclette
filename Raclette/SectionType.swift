@@ -12,4 +12,5 @@ public protocol SectionType {
     var footerTitle: String? { get set }
     @discardableResult func addRow(_ row: RowType?) -> RowType
     @discardableResult func createRow<T>(_ closure: ((Row<T>) -> Void)) -> RowType
+    func clearRows()
 }

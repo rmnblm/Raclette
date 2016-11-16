@@ -30,4 +30,9 @@ extension Section {
     @discardableResult public func createRow<T>(_ closure: ((Row<T>) -> Void)) -> RowType {
         return addRow(Row<T>() { closure($0) })
     }
+
+    /// Removes all rows of the section.
+    public func clearRows() {
+        rows.removeAll()
+    }
 }
