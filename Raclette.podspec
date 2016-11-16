@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'Raclette'
-  s.version = '1.0.0'
+  s.version = '0.0.1'
   s.license = 'MIT'
   s.homepage = 'https://github.com/rmnblm/Raclette.git'
   s.summary = 'Simple UITableView manager written entirely in Swift 3'
