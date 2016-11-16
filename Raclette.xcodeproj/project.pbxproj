@@ -3,18 +3,39 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		30BBED8A1DDB551C00762C16 /* Raclette.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30BBED801DDB551C00762C16 /* Raclette.framework */; };
 		30BBED8F1DDB551C00762C16 /* RacletteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BBED8E1DDB551C00762C16 /* RacletteTests.swift */; };
-		30BBED911DDB551C00762C16 /* Raclette.h in Headers */ = {isa = PBXBuildFile; fileRef = 30BBED831DDB551C00762C16 /* Raclette.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		30BBEDA41DDB56B100762C16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BBEDA31DDB56B100762C16 /* AppDelegate.swift */; };
 		30BBEDA61DDB56B100762C16 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BBEDA51DDB56B100762C16 /* ViewController.swift */; };
 		30BBEDA91DDB56B100762C16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30BBEDA71DDB56B100762C16 /* Main.storyboard */; };
 		30BBEDAB1DDB56B100762C16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30BBEDAA1DDB56B100762C16 /* Assets.xcassets */; };
 		30BBEDAE1DDB56B100762C16 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30BBEDAC1DDB56B100762C16 /* LaunchScreen.storyboard */; };
+		30BBEDBC1DDB5F6000762C16 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BBEDBB1DDB5F6000762C16 /* Section.swift */; };
+		30BBEDBE1DDB5F6600762C16 /* Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BBEDBD1DDB5F6600762C16 /* Row.swift */; };
+		30BBEDC21DDB611800762C16 /* Raclette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BBEDC11DDB611800762C16 /* Raclette.swift */; };
+		30BBEDC41DDB669200762C16 /* SectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BBEDC31DDB669200762C16 /* SectionTests.swift */; };
+		30BBEDC61DDB669B00762C16 /* RowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BBEDC51DDB669B00762C16 /* RowTests.swift */; };
+		30BBEDDA1DDB865300762C16 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BBEDBB1DDB5F6000762C16 /* Section.swift */; };
+		30BBEDDB1DDB865300762C16 /* Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BBEDBD1DDB5F6600762C16 /* Row.swift */; };
+		30BBEDDC1DDB865300762C16 /* Raclette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BBEDC11DDB611800762C16 /* Raclette.swift */; };
+		30BBEDDE1DDB865500762C16 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BBEDBB1DDB5F6000762C16 /* Section.swift */; };
+		30BBEDDF1DDB865500762C16 /* Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BBEDBD1DDB5F6600762C16 /* Row.swift */; };
+		30BBEDE01DDB865500762C16 /* Raclette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BBEDC11DDB611800762C16 /* Raclette.swift */; };
+		30BBEDE91DDBA72300762C16 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BBEDE81DDBA72300762C16 /* CustomCell.swift */; };
+		30BBEDF41DDC39EA00762C16 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30BBED841DDB551C00762C16 /* Info.plist */; };
+		30F9F1901DDC950F009CB9B3 /* UITableView+Raclette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F9F18F1DDC950F009CB9B3 /* UITableView+Raclette.swift */; };
+		30F9F1911DDC95F0009CB9B3 /* UITableView+Raclette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F9F18F1DDC950F009CB9B3 /* UITableView+Raclette.swift */; };
+		30F9F1921DDC95F1009CB9B3 /* UITableView+Raclette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F9F18F1DDC950F009CB9B3 /* UITableView+Raclette.swift */; };
+		30F9F1981DDCACEB009CB9B3 /* SectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F9F1971DDCACEB009CB9B3 /* SectionType.swift */; };
+		30F9F19A1DDCAD05009CB9B3 /* RowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F9F1991DDCAD05009CB9B3 /* RowType.swift */; };
+		30F9F19B1DDCAD6A009CB9B3 /* SectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F9F1971DDCACEB009CB9B3 /* SectionType.swift */; };
+		30F9F19C1DDCAD6B009CB9B3 /* SectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F9F1971DDCACEB009CB9B3 /* SectionType.swift */; };
+		30F9F19D1DDCAD6D009CB9B3 /* RowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F9F1991DDCAD05009CB9B3 /* RowType.swift */; };
+		30F9F19E1DDCAD6E009CB9B3 /* RowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F9F1991DDCAD05009CB9B3 /* RowType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,7 +50,6 @@
 
 /* Begin PBXFileReference section */
 		30BBED801DDB551C00762C16 /* Raclette.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Raclette.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		30BBED831DDB551C00762C16 /* Raclette.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Raclette.h; sourceTree = "<group>"; };
 		30BBED841DDB551C00762C16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30BBED891DDB551C00762C16 /* RacletteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RacletteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		30BBED8E1DDB551C00762C16 /* RacletteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RacletteTests.swift; sourceTree = "<group>"; };
@@ -41,6 +61,15 @@
 		30BBEDAA1DDB56B100762C16 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		30BBEDAD1DDB56B100762C16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		30BBEDAF1DDB56B100762C16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30BBEDBB1DDB5F6000762C16 /* Section.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		30BBEDBD1DDB5F6600762C16 /* Row.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Row.swift; sourceTree = "<group>"; };
+		30BBEDC11DDB611800762C16 /* Raclette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Raclette.swift; sourceTree = "<group>"; };
+		30BBEDC31DDB669200762C16 /* SectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionTests.swift; sourceTree = "<group>"; };
+		30BBEDC51DDB669B00762C16 /* RowTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RowTests.swift; sourceTree = "<group>"; };
+		30BBEDE81DDBA72300762C16 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		30F9F18F1DDC950F009CB9B3 /* UITableView+Raclette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Raclette.swift"; sourceTree = "<group>"; };
+		30F9F1971DDCACEB009CB9B3 /* SectionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionType.swift; sourceTree = "<group>"; };
+		30F9F1991DDCAD05009CB9B3 /* RowType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RowType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,8 +121,13 @@
 		30BBED821DDB551C00762C16 /* Raclette */ = {
 			isa = PBXGroup;
 			children = (
-				30BBED831DDB551C00762C16 /* Raclette.h */,
 				30BBED841DDB551C00762C16 /* Info.plist */,
+				30F9F1971DDCACEB009CB9B3 /* SectionType.swift */,
+				30BBEDBB1DDB5F6000762C16 /* Section.swift */,
+				30F9F1991DDCAD05009CB9B3 /* RowType.swift */,
+				30BBEDBD1DDB5F6600762C16 /* Row.swift */,
+				30BBEDC11DDB611800762C16 /* Raclette.swift */,
+				30F9F18F1DDC950F009CB9B3 /* UITableView+Raclette.swift */,
 			);
 			path = Raclette;
 			sourceTree = "<group>";
@@ -102,16 +136,19 @@
 			isa = PBXGroup;
 			children = (
 				30BBED8E1DDB551C00762C16 /* RacletteTests.swift */,
+				30BBEDC31DDB669200762C16 /* SectionTests.swift */,
+				30BBEDC51DDB669B00762C16 /* RowTests.swift */,
 				30BBED901DDB551C00762C16 /* Info.plist */,
 			);
 			path = RacletteTests;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		30BBEDA21DDB56B100762C16 /* RacletteExample */ = {
 			isa = PBXGroup;
 			children = (
 				30BBEDA31DDB56B100762C16 /* AppDelegate.swift */,
 				30BBEDA51DDB56B100762C16 /* ViewController.swift */,
+				30BBEDE81DDBA72300762C16 /* CustomCell.swift */,
 				30BBEDA71DDB56B100762C16 /* Main.storyboard */,
 				30BBEDAA1DDB56B100762C16 /* Assets.xcassets */,
 				30BBEDAC1DDB56B100762C16 /* LaunchScreen.storyboard */,
@@ -127,7 +164,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30BBED911DDB551C00762C16 /* Raclette.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +252,7 @@
 				};
 			};
 			buildConfigurationList = 30BBED7A1DDB551C00762C16 /* Build configuration list for PBXProject "Raclette" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -240,6 +276,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30BBEDF41DDC39EA00762C16 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +304,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30BBEDBE1DDB5F6600762C16 /* Row.swift in Sources */,
+				30F9F1981DDCACEB009CB9B3 /* SectionType.swift in Sources */,
+				30F9F19A1DDCAD05009CB9B3 /* RowType.swift in Sources */,
+				30F9F1901DDC950F009CB9B3 /* UITableView+Raclette.swift in Sources */,
+				30BBEDC21DDB611800762C16 /* Raclette.swift in Sources */,
+				30BBEDBC1DDB5F6000762C16 /* Section.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,7 +317,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30BBEDC61DDB669B00762C16 /* RowTests.swift in Sources */,
+				30BBEDDE1DDB865500762C16 /* Section.swift in Sources */,
 				30BBED8F1DDB551C00762C16 /* RacletteTests.swift in Sources */,
+				30F9F19B1DDCAD6A009CB9B3 /* SectionType.swift in Sources */,
+				30BBEDE01DDB865500762C16 /* Raclette.swift in Sources */,
+				30F9F19D1DDCAD6D009CB9B3 /* RowType.swift in Sources */,
+				30F9F1911DDC95F0009CB9B3 /* UITableView+Raclette.swift in Sources */,
+				30BBEDDF1DDB865500762C16 /* Row.swift in Sources */,
+				30BBEDC41DDB669200762C16 /* SectionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,7 +333,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30BBEDDB1DDB865300762C16 /* Row.swift in Sources */,
+				30BBEDDA1DDB865300762C16 /* Section.swift in Sources */,
 				30BBEDA61DDB56B100762C16 /* ViewController.swift in Sources */,
+				30F9F19C1DDCAD6B009CB9B3 /* SectionType.swift in Sources */,
+				30BBEDDC1DDB865300762C16 /* Raclette.swift in Sources */,
+				30F9F19E1DDCAD6E009CB9B3 /* RowType.swift in Sources */,
+				30F9F1921DDC95F1009CB9B3 /* UITableView+Raclette.swift in Sources */,
+				30BBEDE91DDBA72300762C16 /* CustomCell.swift in Sources */,
 				30BBEDA41DDB56B100762C16 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -428,6 +486,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Raclette/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rmnblm.Raclette;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -449,6 +508,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Raclette/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rmnblm.Raclette;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -460,6 +520,7 @@
 		30BBED981DDB551C00762C16 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = LX2LWMTL8R;
 				INFOPLIST_FILE = RacletteTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -472,6 +533,7 @@
 		30BBED991DDB551C00762C16 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = LX2LWMTL8R;
 				INFOPLIST_FILE = RacletteTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -544,6 +606,7 @@
 				30BBEDB21DDB56B100762C16 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
