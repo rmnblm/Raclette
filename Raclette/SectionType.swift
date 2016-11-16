@@ -6,11 +6,10 @@
 //  Copyright © 2016 RMNBLM. All rights reserved.
 //
 
-import Foundation
-
 public protocol SectionType {
     var rows: [RowType] { get }
     var headerTitle: String? { get set }
     var footerTitle: String? { get set }
-    func addRow(_ row: RowType?) -> RowType
+    @discardableResult func addRow(_ row: RowType?) -> RowType
+    @discardableResult func createRow<T>(_ closure: ((Row<T>) -> Void)) -> RowType
 }
