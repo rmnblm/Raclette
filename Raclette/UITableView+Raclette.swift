@@ -13,10 +13,13 @@ private let instanceKey = "RacletteInstance"
 public extension UITableView {
     public var raclette: Raclette {
         get {
-            guard let racletteInstance = self.layer.value(forKey: instanceKey) as? Raclette else {
-                let instance = Raclette(self)
-                self.layer.setValue(instance, forKey: instanceKey)
-                return instance
+            guard let racletteInstance = layer.value(forKey: instanceKey) as? Raclette else {
+                let raclette = Raclette()
+                delegate = raclette
+                dataSource = raclette
+                register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
+                layer.setValue(raclette, forKey: instanceKey)
+                return raclette
             }
             return racletteInstance
         }

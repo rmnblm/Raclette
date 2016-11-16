@@ -11,32 +11,17 @@ import UIKit
 public class Raclette: NSObject {
     public var scrollViewDelegate: UIScrollViewDelegate?
     public fileprivate(set) var sections = [SectionType]()
-
-    fileprivate weak var tableView: UITableView!
-
-    public required init(_ tableView: UITableView) {
-        super.init()
-        self.tableView = tableView
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
-    }
-
-    deinit {
-        tableView.delegate = nil
-        tableView.dataSource = nil
-    }
 }
 
 extension Raclette {
-    /// Reloads the data of the table.
-    public func reloadData() {
-        tableView.reloadData()
-    }
-
     /// Adds a row to the last section.
     @discardableResult public func addRow(_ row: RowType? = nil) -> RowType {
         return lastSection().addRow(row)
+    }
+
+    /// Creates and adds a new row to the last section.
+    @discardableResult public func createRow<T>(_ closure: ((Row<T>) -> Void)) -> RowType {
+        return lastSection().addRow(Row<T>() { closure($0) })
     }
 
     /// Returns the last section of the table.
@@ -52,6 +37,11 @@ extension Raclette {
         let newSection = section ?? Section()
         sections.append(newSection)
         return newSection
+    }
+
+    /// Creates and adds a new section to the table.
+    @discardableResult public func createSection(_ closure: ((Section) -> Void)) -> SectionType {
+        return addSection(Section() { closure($0) })
     }
 
     // Removes all sections of the table.
@@ -89,14 +79,14 @@ extension Raclette: UITableViewDataSource {
 
 extension Raclette: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return calculateHeight(forRowAt: indexPath)
+        return calculateHeight(tableView, forRowAt: indexPath)
     }
 
     public func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return calculateHeight(forRowAt: indexPath)
+        return calculateHeight(tableView, forRowAt: indexPath)
     }
 
-    private func calculateHeight(forRowAt indexPath: IndexPath) -> CGFloat {
+    private func calculateHeight(_ tableView: UITableView, forRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
         if row.dynamicHeight {
             return UITableViewAutomaticDimension
