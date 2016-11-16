@@ -25,6 +25,16 @@ public extension UITableView {
         }
     }
 
+    /// Gets or sets the delegate to redirect all calls to `UIScrollViewDelegate`.
+    public var scrollViewDelegate: UIScrollViewDelegate? {
+        get {
+            return raclette.scrollViewDelegate
+        }
+        set {
+            raclette.scrollViewDelegate = newValue
+        }
+    }
+
     /// Adds a row to the last section.
     @discardableResult public func addRow(_ row: RowType? = nil) -> RowType {
         return raclette.addRow(row)
