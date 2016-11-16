@@ -11,7 +11,7 @@ import UIKit
 private let instanceKey = "RacletteInstance"
 
 public extension UITableView {
-    public var raclette: Raclette {
+    private var raclette: Raclette {
         get {
             guard let racletteInstance = layer.value(forKey: instanceKey) as? Raclette else {
                 let raclette = Raclette()
@@ -23,5 +23,35 @@ public extension UITableView {
             }
             return racletteInstance
         }
+    }
+
+    /// Adds a row to the last section.
+    @discardableResult public func addRow(_ row: RowType? = nil) -> RowType {
+        return raclette.addRow(row)
+    }
+
+    /// Creates and adds a new row to the last section.
+    @discardableResult public func createRow<T>(_ closure: ((Row<T>) -> Void)) -> RowType {
+        return raclette.createRow(closure)
+    }
+
+    /// Returns the last section of the table.
+    @discardableResult public func lastSection() -> SectionType {
+        return raclette.lastSection()
+    }
+
+    /// Add a new section to the table. If no section is passed as parameter, a new section will be added to the table and returned.
+    @discardableResult public func addSection(_ section: SectionType? = nil) -> SectionType {
+        return raclette.addSection(section)
+    }
+
+    /// Creates and adds a new section to the table.
+    @discardableResult public func createSection(_ closure: ((Section) -> Void)) -> SectionType {
+        return raclette.createSection(closure)
+    }
+
+    // Removes all sections of the table.
+    public func clearSections() {
+        raclette.clearSections()
     }
 }
