@@ -23,7 +23,7 @@ class RowTests: XCTestCase {
         XCTAssertTrue(configured)
     }
 
-    func thestThat_whenSettingTheReuseIdentifier_itIsTheSameAfterConfiguration() {
+    func testThat_whenSettingTheReuseIdentifier_itIsTheSameAfterConfiguration() {
         let staticIdentifier = "MyCell"
         let row = Row()
         row.reuseIdentifier = staticIdentifier
@@ -34,7 +34,7 @@ class RowTests: XCTestCase {
         XCTAssertEqual(staticIdentifier, row.reuseIdentifier)
     }
 
-    func thestThat_whenSettingTheReuseIdentifier_itIsTheSameAfterConfigurationOfACustomCell() {
+    func testThat_whenSettingTheReuseIdentifier_itIsTheSameAfterConfigurationOfACustomCell() {
         let staticIdentifier = "MyCell"
         let row = Row()
         row.reuseIdentifier = staticIdentifier
@@ -45,7 +45,7 @@ class RowTests: XCTestCase {
         XCTAssertEqual(staticIdentifier, row.reuseIdentifier)
     }
 
-    func thestThat_whenNotSettingTheReuseIdentifier_itIsTypeNameOfTheConfiguredCell() {
+    func testThat_whenNotSettingTheReuseIdentifier_itIsTypeNameOfTheConfiguredCell() {
         let expectedIdentifier = "CustomCell"
         let row = Row<CustomCell>()
         row.configuration = { cell in }
