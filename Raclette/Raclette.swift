@@ -14,6 +14,13 @@ public class Raclette: NSObject {
 }
 
 extension Raclette {
+    /// Gets the count of all rows in all sections
+    public var rowCount: Int {
+        get {
+            return (sections.map { return $0.rows.count }).reduce(0, +)
+        }
+    }
+
     /// Adds a row to the last section.
     @discardableResult public func addRow(_ row: RowType? = nil) -> RowType {
         return lastSection().addRow(row)
