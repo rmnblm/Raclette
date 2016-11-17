@@ -72,7 +72,7 @@ class SectionTests: XCTestCase {
         XCTAssertEqual(section.rows.count, times)
     }
 
-    func testThat_whenClearingAllRowsInASection_itHasZeroRows() {
+    func testThat_whenClearingAllRows_itHasZeroRows() {
         let section = Section()
         section.addRow()
 
