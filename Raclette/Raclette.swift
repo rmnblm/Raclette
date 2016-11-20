@@ -55,11 +55,19 @@ extension Raclette {
     public func clearSections() {
         sections.removeAll()
     }
+
+    /// Returns a section at the specified index, returns nil if the index is out of bounds.
+    public func section(at index: Int) -> SectionType? {
+        return sections.indices.contains(index) ? sections[index] : nil
+    }
 }
 
 extension Raclette: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sections[section].rows.count
+        guard let sectionType = self.section(at: section) else {
+            return 0
+        }
+        return sectionType.rows.count
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -76,11 +84,17 @@ extension Raclette: UITableViewDataSource {
     }
 
     public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sections[section].headerTitle
+        guard let sectionType = self.section(at: section) else {
+            return nil
+        }
+        return sectionType.headerTitle
     }
 
     public func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return sections[section].footerTitle
+        guard let sectionType = self.section(at: section) else {
+            return nil
+        }
+        return sectionType.footerTitle
     }
 }
 
