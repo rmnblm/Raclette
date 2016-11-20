@@ -71,4 +71,19 @@ class RacletteTests: XCTestCase {
         XCTAssertEqual(raclette.sections.count, 0)
         XCTAssertEqual(raclette.rowCount, 0)
     }
+
+    func testThat_whenAccessingASectionByInvalidIndex_itReturnsNil() {
+        let raclette = Raclette()
+
+        XCTAssertEqual(raclette.sections.count, 0)
+        XCTAssertNil(raclette.section(at: 1))
+    }
+
+    func testThat_whenAccessingASectionByValidIndex_itReturnsNil() {
+        let raclette = Raclette()
+        raclette.addSection()
+
+        XCTAssertEqual(raclette.sections.count, 1)
+        XCTAssertNotNil(raclette.section(at: 0))
+    }
 }
