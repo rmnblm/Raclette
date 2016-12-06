@@ -112,8 +112,8 @@ extension Raclette: UITableViewDelegate {
     private func calculateHeight(_ tableView: UITableView, forRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
 
-        if let rowHeight = row.height {
-            return rowHeight
+        if let staticRowHeight = row.height {
+            return staticRowHeight
         }
 
         if row.dynamicHeight || isDynamicRowHeightEnabled {
