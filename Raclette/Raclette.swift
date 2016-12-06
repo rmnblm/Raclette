@@ -125,43 +125,47 @@ extension Raclette: UITableViewDelegate {
 
     public func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         let row = sections[indexPath.section].rows[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: row.reuseIdentifier, for: indexPath)
-        if let delegate = row as? RowDelegateType {
-            return delegate.shouldHighlight(tableView, cell: cell, indexPath: indexPath) ?? isRowHighlightingEnabled
+        guard let cell = tableView.cellForRow(at: indexPath), let delegate = row as? RowDelegateType else {
+            return isRowHighlightingEnabled
         }
-        return isRowHighlightingEnabled
+
+        return delegate.shouldHighlight(tableView, cell: cell, indexPath: indexPath) ?? isRowHighlightingEnabled
     }
 
     public func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: row.reuseIdentifier, for: indexPath)
-        if let delegate = row as? RowDelegateType {
-            delegate.didHighlight(tableView, cell: cell, indexPath: indexPath)
+        guard let cell = tableView.cellForRow(at: indexPath), let delegate = row as? RowDelegateType else {
+            return
         }
+
+        delegate.didHighlight(tableView, cell: cell, indexPath: indexPath)
     }
 
     public func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: row.reuseIdentifier, for: indexPath)
-        if let delegate = row as? RowDelegateType {
-            delegate.didUnhighlight(tableView, cell: cell, indexPath: indexPath)
+        guard let cell = tableView.cellForRow(at: indexPath), let delegate = row as? RowDelegateType else {
+            return
         }
+
+        delegate.didUnhighlight(tableView, cell: cell, indexPath: indexPath)
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: row.reuseIdentifier, for: indexPath)
-        if let delegate = row as? RowDelegateType {
-            delegate.didSelect(tableView, cell: cell, indexPath: indexPath)
+        guard let cell = tableView.cellForRow(at: indexPath), let delegate = row as? RowDelegateType else {
+            return
         }
+
+        delegate.didSelect(tableView, cell: cell, indexPath: indexPath)
     }
 
     public func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: row.reuseIdentifier, for: indexPath)
-        if let delegate = row as? RowDelegateType {
-            delegate.didDeselect(tableView, cell: cell, indexPath: indexPath)
+        guard let cell = tableView.cellForRow(at: indexPath), let delegate = row as? RowDelegateType else {
+            return
         }
+
+        delegate.didDeselect(tableView, cell: cell, indexPath: indexPath)
     }
 }
 
