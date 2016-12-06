@@ -18,7 +18,7 @@ public class Row<T: UITableViewCell>: RowType {
     }
 
     public var height: CGFloat?
-    public var dynamicHeight: Bool = false
+    public var dynamicHeight: Bool = true
 
     private var _reuseIdentifier: String?
     public var reuseIdentifier: String {
