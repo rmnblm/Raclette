@@ -10,6 +10,7 @@ import UIKit
 
 public class Row<T: UITableViewCell>: RowType {
     public typealias Configuration = (T) -> Void
+    public typealias TableInformation = (tableView: UITableView, indexPath: IndexPath)
 
     public init() { }
 
@@ -34,6 +35,11 @@ public class Row<T: UITableViewCell>: RowType {
     }
 
     public var configuration: Configuration?
+    public var shouldHighlight: ((T, TableInformation) -> Bool)?
+    public var didHighlight: ((T, TableInformation) -> Void)?
+    public var didUnhighlight: ((T, TableInformation) -> Void)?
+    public var didSelect: ((T, TableInformation) -> Void)?
+    public var didDeselect: ((T, TableInformation) -> Void)?
 }
 
 extension Row: RowDelegateType {
@@ -43,5 +49,39 @@ extension Row: RowDelegateType {
         }
         configuration?(typedCell)
     }
+
+    func shouldHighlight(_ tableView: UITableView, cell: UITableViewCell, indexPath: IndexPath) -> Bool? {
+        guard let typedCell = cell as? T else {
+            return nil
+        }
+        return shouldHighlight?(typedCell, (tableView, indexPath)) ?? nil
+    }
+
+    func didHighlight(_ tableView: UITableView, cell: UITableViewCell, indexPath: IndexPath) {
+        guard let typedCell = cell as? T else {
+            return
+        }
+        didHighlight?(typedCell, (tableView, indexPath))
+    }
+
+    func didUnhighlight(_ tableView: UITableView, cell: UITableViewCell, indexPath: IndexPath) {
+        guard let typedCell = cell as? T else {
+            return
+        }
+        didUnhighlight?(typedCell, (tableView, indexPath))
+    }
+
+    func didSelect(_ tableView: UITableView, cell: UITableViewCell, indexPath: IndexPath) {
+        guard let typedCell = cell as? T else {
+            return
+        }
+        didSelect?(typedCell, (tableView, indexPath))
+    }
+
+    func didDeselect(_ tableView: UITableView, cell: UITableViewCell, indexPath: IndexPath) {
+        guard let typedCell = cell as? T else {
+            return
+        }
+        didDeselect?(typedCell, (tableView, indexPath))
     }
 }

@@ -16,4 +16,9 @@ public protocol RowType {
 
 protocol RowDelegateType {
     func configure(_ cell: UITableViewCell)
+    func shouldHighlight(_ tableView: UITableView, cell: UITableViewCell, indexPath: IndexPath) -> Bool?
+    func didHighlight(_ tableView: UITableView, cell: UITableViewCell, indexPath: IndexPath)
+    func didUnhighlight(_ tableView: UITableView, cell: UITableViewCell, indexPath: IndexPath)
+    func didSelect(_ tableView: UITableView, cell: UITableViewCell, indexPath: IndexPath)
+    func didDeselect(_ tableView: UITableView, cell: UITableViewCell, indexPath: IndexPath)
 }
