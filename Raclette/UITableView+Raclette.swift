@@ -17,12 +17,20 @@ public extension UITableView {
                 let raclette = Raclette()
                 delegate = raclette
                 dataSource = raclette
-                register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
+                register(UITableViewCell.self)
                 layer.setValue(raclette, forKey: instanceKey)
                 return raclette
             }
             return racletteInstance
         }
+    }
+
+    // Registers a cell class using the name of the class as reuse identifier
+    public func register(_ cellClass: Swift.AnyClass?) {
+        guard let type = cellClass else {
+            fatalError()
+        }
+        self.register(type, forCellReuseIdentifier: String(describing: type))
     }
 
     /// Gets or sets the delegate to redirect all calls to `UIScrollViewDelegate`.
@@ -35,6 +43,26 @@ public extension UITableView {
         }
     }
 
+    // Gets or sets a boolean value if highlighting of rows is globally enabled or not
+    public var isRowHighlightingEnabled: Bool {
+        get {
+            return raclette.isRowHighlightingEnabled
+        }
+        set {
+            raclette.isRowHighlightingEnabled = newValue
+        }
+    }
+
+    // Gets or sets a boolean value if dynamic height of rows is globally enabled or not
+    public var isDynamicRowHeightEnabled: Bool {
+        get {
+            return raclette.isDynamicRowHeightEnabled
+        }
+        set {
+            raclette.isDynamicRowHeightEnabled = newValue
+        }
+    }
+    
     /// Adds a row to the last section.
     @discardableResult public func addRow(_ row: RowType? = nil) -> RowType {
         return raclette.addRow(row)

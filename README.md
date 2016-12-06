@@ -32,12 +32,20 @@ Raclette makes it easy for you to mutate your `UITableView` in seconds.
 **Example**
 
 ``` swift
+tableView.isRowHighlightingEnabled = true
 tableView.createSection { section in 
 	section.headerTitle = "My section header"
     section.footerTitle = "My section footer"
     section.createRow { row in
       	row.configuration = { cell in
           	cell.textLabel?.text = "Hello World!"
+      	}
+      	row.shouldHighlight = { cell, _ in
+      		return false // overrides global setting
+      	}
+      	row.didSelect = { cell, tableInfo in
+	      	cell.textLabel?.text = "Selected"
+      		tableInfo.tableView.deselectRow(at: tableInfo.indexPath, animated: true)
       	}
     }
 }
@@ -49,15 +57,17 @@ tableView.createSection { section in
 
 
 
+For more examples please take a look at the [example project](./RacletteExample/ViewController.swift).
+
 ## Features
 
 * Integrates easily as an extension for your existing `UITableView`
-* Support for dynamic cell height
+* Support for dynamic row height
 * Support for inline closures to reduce code
 * Use your own cells which inherit from `UITableViewCell`
 * Reusing cells by it's identifier is magically managed for you ✨
 * Redirection for `UIScrollViewDelegate` available
-* No need to worry about `UITableViewDelegate` and `UITableViewDataSource`
+* No need to worry about `UITableViewDelegate` and `UITableViewDataSource` implementation
 
 
 
@@ -75,28 +85,15 @@ pod 'Raclette'
 
 ## Documentation
 
+- Enable/disable row highlighting globally with `tableView.isRowHighighlightingEnabled = false`
+- Enable/disable dynamic row height globally with `tableView.isDynamicRowHeightEnabled = false`
+- Redirect the scroll view delegate to the calling instance with `tableView.scrollViewDelegate = self` (note that `UIScrollViewDelegate` must be implemented in the class header)
+
+
+
 ### Rows
 
 Rows can either be added to a table with or without specifying a section. If you don't specify a section, Raclette adds the row to the last section of the table. If you didn't add a section before, Raclette creates a default one for you.
-
-You have three options to add a row:
-
-**Create a row, configure it and add it to the table**
-
-```swift
-var row = Row()
-row.height = 50
-tableView.addRow(row)
-```
-
-**Add a default row and configure later**
-
-```swift
-var row = tableView.addRow()
-row.height = 50
-```
-
-**Create, configure and add a row (preferred)**
 
 ``` swift
 tableView.createRow { row in
@@ -104,22 +101,47 @@ tableView.createRow { row in
 }
 ```
 
+**Available Delegate Methods**
+
+* shouldHighlight
+* didHighlight
+* didUnhighlight
+* willSelect
+* willDeselect
+* didSelect
+* didUnselect
+
+
+
 ### Cells
 
 Cells are the actual UI representation of a row.
 
 **Dynamic Height**
 
-Enabling dynamic height is quite straight forward with a default `UITableViewCell`.
+Dynamic height is globally **enabled** for all cells **by default**. Here's an example of how to use and benefit from the dynamic height feature (using the default `UITableViewCell` class):
 
 ```swift
 tableView.createRow { row in
-  	row.dynamicHeight = true
   	row.configuration = { cell in
   		cell.textLabel?.numberOfLines = 0
   		cell.textLabel?.text = "Very long text..."
   	}
 }
+```
+
+You can turn off dynamic height for specific rows.
+
+```swift
+tableView.createRow { row in
+  	row.dynamicHeight = false
+}
+```
+
+Or you can turn off dynamic row height globally.
+
+```swift
+tableView.isDynamicRowHeightEnabled = false
 ```
 
 In order to get dynamic height working with customized cells, you have to get your constraints right.
@@ -139,39 +161,22 @@ class CustomCell: UITableViewCell {
 
 tableView.createRow { (row: Row<CustomCell>) in
 	row.configuration = { cell in
-		cell.testLabel?.text = "My Test Label"
+		cell.testLabel.text = "My Test Label"
 	}
 }
 ```
 
+
+
 ### Sections
 
-Again, you have three options to add a section:
-
-**Create a section, configure it and add it to the table**
-
-```swift
-var section = Section()
-section.headerTitle = "My Section Title"
-tableView.addSection(section)
-```
-
-**Add a default section and configure later**
-
-```swift
-var section = tableView.addSection()
-section.headerTitle = "My Section Title"
-```
-
-**Create, configure and add a section (preferred)**
+Adding a section is as easy as adding a row.
 
 ```swift
 tableView.createSection { section in
 	section.headerTitle = "My Section Title"
 }
 ```
-
-Using the first two options has the benefit of having a reference to a specific section. From there you can actually add rows to specific sections like shown before.
 
 
 

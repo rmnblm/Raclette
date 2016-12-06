@@ -9,8 +9,10 @@
 import UIKit
 
 public class Raclette: NSObject {
-    public var scrollViewDelegate: UIScrollViewDelegate?
     public fileprivate(set) var sections = [SectionType]()
+    public var scrollViewDelegate: UIScrollViewDelegate?
+    public var isRowHighlightingEnabled = true
+    public var isDynamicRowHeightEnabled = true
 }
 
 extension Raclette {
@@ -109,10 +111,79 @@ extension Raclette: UITableViewDelegate {
 
     private func calculateHeight(_ tableView: UITableView, forRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
-        if row.dynamicHeight {
+
+        if let staticRowHeight = row.height {
+            return staticRowHeight
+        }
+
+        if row.dynamicHeight || isDynamicRowHeightEnabled {
             return UITableViewAutomaticDimension
         }
-        return row.height ?? tableView.rowHeight
+
+        return tableView.rowHeight
+    }
+
+    public func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        let row = sections[indexPath.section].rows[indexPath.row]
+        guard let cell = tableView.cellForRow(at: indexPath), let delegate = row as? RowDelegateType else {
+            return isRowHighlightingEnabled
+        }
+
+        return delegate.shouldHighlight(tableView, cell: cell, indexPath: indexPath) ?? isRowHighlightingEnabled
+    }
+
+    public func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        let row = sections[indexPath.section].rows[indexPath.row]
+        guard let cell = tableView.cellForRow(at: indexPath), let delegate = row as? RowDelegateType else {
+            return
+        }
+
+        delegate.didHighlight(tableView, cell: cell, indexPath: indexPath)
+    }
+
+    public func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        let row = sections[indexPath.section].rows[indexPath.row]
+        guard let cell = tableView.cellForRow(at: indexPath), let delegate = row as? RowDelegateType else {
+            return
+        }
+
+        delegate.didUnhighlight(tableView, cell: cell, indexPath: indexPath)
+    }
+
+    public func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        let row = sections[indexPath.section].rows[indexPath.row]
+        guard let cell = tableView.cellForRow(at: indexPath), let delegate = row as? RowDelegateType else {
+            return indexPath
+        }
+
+        return delegate.willSelect(tableView, cell: cell, indexPath: indexPath)
+    }
+
+    public func tableView(_ tableView: UITableView, willDeselectRowAt indexPath: IndexPath) -> IndexPath? {
+        let row = sections[indexPath.section].rows[indexPath.row]
+        guard let cell = tableView.cellForRow(at: indexPath), let delegate = row as? RowDelegateType else {
+            return indexPath
+        }
+
+        return delegate.willDeselect(tableView, cell: cell, indexPath: indexPath)
+    }
+
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let row = sections[indexPath.section].rows[indexPath.row]
+        guard let cell = tableView.cellForRow(at: indexPath), let delegate = row as? RowDelegateType else {
+            return
+        }
+
+        delegate.didSelect(tableView, cell: cell, indexPath: indexPath)
+    }
+
+    public func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let row = sections[indexPath.section].rows[indexPath.row]
+        guard let cell = tableView.cellForRow(at: indexPath), let delegate = row as? RowDelegateType else {
+            return
+        }
+
+        delegate.didDeselect(tableView, cell: cell, indexPath: indexPath)
     }
 }
 
