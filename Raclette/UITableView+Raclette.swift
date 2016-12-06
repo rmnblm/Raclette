@@ -17,7 +17,7 @@ public extension UITableView {
                 let raclette = Raclette()
                 delegate = raclette
                 dataSource = raclette
-                register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
+                register(UITableViewCell.self)
                 layer.setValue(raclette, forKey: instanceKey)
                 return raclette
             }
