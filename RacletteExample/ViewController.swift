@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Raclette
 
 class ViewController: UIViewController {
 
