@@ -38,6 +38,8 @@ public class Row<T: UITableViewCell>: RowType {
     public var shouldHighlight: ((T, TableInformation) -> Bool)?
     public var didHighlight: ((T, TableInformation) -> Void)?
     public var didUnhighlight: ((T, TableInformation) -> Void)?
+    public var willSelect: ((T, TableInformation) -> IndexPath?)?
+    public var willDeselect: ((T, TableInformation) -> IndexPath?)?
     public var didSelect: ((T, TableInformation) -> Void)?
     public var didDeselect: ((T, TableInformation) -> Void)?
 }
@@ -69,6 +71,20 @@ extension Row: RowDelegateType {
             return
         }
         didUnhighlight?(typedCell, (tableView, indexPath))
+    }
+
+    func willSelect(_ tableView: UITableView, cell: UITableViewCell, indexPath: IndexPath) -> IndexPath? {
+        guard let typedCell = cell as? T else {
+            return indexPath
+        }
+        return willSelect?(typedCell, (tableView, indexPath)) ?? indexPath
+    }
+
+    func willDeselect(_ tableView: UITableView, cell: UITableViewCell, indexPath: IndexPath) -> IndexPath? {
+        guard let typedCell = cell as? T else {
+            return indexPath
+        }
+        return willDeselect?(typedCell, (tableView, indexPath)) ?? indexPath
     }
 
     func didSelect(_ tableView: UITableView, cell: UITableViewCell, indexPath: IndexPath) {

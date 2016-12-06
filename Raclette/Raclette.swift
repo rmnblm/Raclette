@@ -150,6 +150,24 @@ extension Raclette: UITableViewDelegate {
         delegate.didUnhighlight(tableView, cell: cell, indexPath: indexPath)
     }
 
+    public func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        let row = sections[indexPath.section].rows[indexPath.row]
+        guard let cell = tableView.cellForRow(at: indexPath), let delegate = row as? RowDelegateType else {
+            return indexPath
+        }
+
+        return delegate.willSelect(tableView, cell: cell, indexPath: indexPath)
+    }
+
+    public func tableView(_ tableView: UITableView, willDeselectRowAt indexPath: IndexPath) -> IndexPath? {
+        let row = sections[indexPath.section].rows[indexPath.row]
+        guard let cell = tableView.cellForRow(at: indexPath), let delegate = row as? RowDelegateType else {
+            return indexPath
+        }
+
+        return delegate.willDeselect(tableView, cell: cell, indexPath: indexPath)
+    }
+
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
         guard let cell = tableView.cellForRow(at: indexPath), let delegate = row as? RowDelegateType else {
