@@ -30,7 +30,6 @@ public extension UITableView {
         guard let type = cellClass else {
             fatalError()
         }
-        print(type)
         self.register(type, forCellReuseIdentifier: String(describing: type))
     }
 
