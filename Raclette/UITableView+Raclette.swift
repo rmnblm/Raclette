@@ -44,6 +44,16 @@ public extension UITableView {
         }
     }
 
+    // Gets or sets a boolean value if highlighting of rows is globally enabled or not
+    public var isRowHighlightingEnabled: Bool {
+        get {
+            return raclette.isRowHighlightingEnabled
+        }
+        set {
+            raclette.isRowHighlightingEnabled = newValue
+        }
+    }
+
     // Gets or sets a boolean value if dynamic height of rows is globally enabled or not
     public var isDynamicRowHeightEnabled: Bool {
         get {

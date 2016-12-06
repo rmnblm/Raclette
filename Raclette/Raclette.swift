@@ -11,6 +11,7 @@ import UIKit
 public class Raclette: NSObject {
     public fileprivate(set) var sections = [SectionType]()
     public var scrollViewDelegate: UIScrollViewDelegate?
+    public var isRowHighlightingEnabled = true
     public var isDynamicRowHeightEnabled = true
 }
 
@@ -121,6 +122,46 @@ extension Raclette: UITableViewDelegate {
 
         return tableView.rowHeight
     }
+
+    public func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        let row = sections[indexPath.section].rows[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: row.reuseIdentifier, for: indexPath)
+        if let delegate = row as? RowDelegateType {
+            return delegate.shouldHighlight(tableView, cell: cell, indexPath: indexPath) ?? isRowHighlightingEnabled
+        }
+        return isRowHighlightingEnabled
+    }
+
+    public func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        let row = sections[indexPath.section].rows[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: row.reuseIdentifier, for: indexPath)
+        if let delegate = row as? RowDelegateType {
+            delegate.didHighlight(tableView, cell: cell, indexPath: indexPath)
+        }
+    }
+
+    public func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        let row = sections[indexPath.section].rows[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: row.reuseIdentifier, for: indexPath)
+        if let delegate = row as? RowDelegateType {
+            delegate.didUnhighlight(tableView, cell: cell, indexPath: indexPath)
+        }
+    }
+
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let row = sections[indexPath.section].rows[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: row.reuseIdentifier, for: indexPath)
+        if let delegate = row as? RowDelegateType {
+            delegate.didSelect(tableView, cell: cell, indexPath: indexPath)
+        }
+    }
+
+    public func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let row = sections[indexPath.section].rows[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: row.reuseIdentifier, for: indexPath)
+        if let delegate = row as? RowDelegateType {
+            delegate.didDeselect(tableView, cell: cell, indexPath: indexPath)
+        }
     }
 }
 
