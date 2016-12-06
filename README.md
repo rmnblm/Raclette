@@ -62,7 +62,7 @@ For more examples please take a look at the [example project](./RacletteExample/
 ## Features
 
 * Integrates easily as an extension for your existing `UITableView`
-* Support for dynamic cell height
+* Support for dynamic row height
 * Support for inline closures to reduce code
 * Use your own cells which inherit from `UITableViewCell`
 * Reusing cells by it's identifier is magically managed for you ✨
@@ -85,6 +85,12 @@ pod 'Raclette'
 
 ## Documentation
 
+- Enable/disable row highlighting globally with `tableView.isRowHighighlightingEnabled = false`
+- Enable/disable dynamic row height globally with `tableView.isDynamicRowHeightEnabled = false`
+- Redirect the scroll view delegate to the calling instance with `tableView.scrollViewDelegate = self` (note that `UIScrollViewDelegate` must be implemented in the class header)
+
+
+
 ### Rows
 
 Rows can either be added to a table with or without specifying a section. If you don't specify a section, Raclette adds the row to the last section of the table. If you didn't add a section before, Raclette creates a default one for you.
@@ -94,6 +100,18 @@ tableView.createRow { row in
 	row.height = 50
 }
 ```
+
+**Available Delegate Methods**
+
+* shouldHighlight
+* didHighlight
+* didUnhighlight
+* willSelect
+* willDeselect
+* didSelect
+* didUnselect
+
+
 
 ### Cells
 
@@ -120,7 +138,7 @@ tableView.createRow { row in
 }
 ```
 
-You can turn dynamic row height globally.
+Or you can turn off dynamic row height globally.
 
 ```swift
 tableView.isDynamicRowHeightEnabled = false
@@ -147,6 +165,8 @@ tableView.createRow { (row: Row<CustomCell>) in
 	}
 }
 ```
+
+
 
 ### Sections
 
