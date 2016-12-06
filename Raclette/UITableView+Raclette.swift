@@ -25,6 +25,15 @@ public extension UITableView {
         }
     }
 
+    // Registers a cell class using the name of the class as reuse identifier
+    public func register(_ cellClass: Swift.AnyClass?) {
+        guard let type = cellClass else {
+            fatalError()
+        }
+        print(type)
+        self.register(type, forCellReuseIdentifier: String(describing: type))
+    }
+
     /// Gets or sets the delegate to redirect all calls to `UIScrollViewDelegate`.
     public var scrollViewDelegate: UIScrollViewDelegate? {
         get {
