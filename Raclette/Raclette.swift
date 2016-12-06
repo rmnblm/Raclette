@@ -11,6 +11,7 @@ import UIKit
 public class Raclette: NSObject {
     public var scrollViewDelegate: UIScrollViewDelegate?
     public fileprivate(set) var sections = [SectionType]()
+    public var isDynamicRowHeightEnabled = true
 }
 
 extension Raclette {
@@ -109,10 +110,17 @@ extension Raclette: UITableViewDelegate {
 
     private func calculateHeight(_ tableView: UITableView, forRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
-        if row.dynamicHeight {
+
+        if let rowHeight = row.height {
+            return rowHeight
+        }
+
+        if row.dynamicHeight || isDynamicRowHeightEnabled {
             return UITableViewAutomaticDimension
         }
-        return row.height ?? tableView.rowHeight
+
+        return tableView.rowHeight
+    }
     }
 }
 

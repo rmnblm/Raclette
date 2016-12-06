@@ -35,6 +35,16 @@ public extension UITableView {
         }
     }
 
+    // Gets or sets a boolean value if dynamic height of rows is globally enabled or not
+    public var isDynamicRowHeightEnabled: Bool {
+        get {
+            return raclette.isDynamicRowHeightEnabled
+        }
+        set {
+            raclette.isDynamicRowHeightEnabled = newValue
+        }
+    }
+    
     /// Adds a row to the last section.
     @discardableResult public func addRow(_ row: RowType? = nil) -> RowType {
         return raclette.addRow(row)
