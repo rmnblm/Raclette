@@ -38,8 +38,10 @@ public class Row<T: UITableViewCell>: RowType {
 
 extension Row: RowDelegateType {
     func configure(_ cell: UITableViewCell) {
-        if let genericCell = cell as? T {
-            configuration?(genericCell)
+        guard let typedCell = cell as? T else {
+            fatalError()
         }
+        configuration?(typedCell)
+    }
     }
 }
