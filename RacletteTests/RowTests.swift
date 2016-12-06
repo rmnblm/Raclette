@@ -7,7 +7,6 @@
 //
 
 import XCTest
-@testable import Raclette
 
 class RowTests: XCTestCase {
     func testThat_whenCellIsConfigured_itUsesTheConfigurationClosure() {

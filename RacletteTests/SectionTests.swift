@@ -7,7 +7,6 @@
 //
 
 import XCTest
-@testable import Raclette
 
 class SectionTests: XCTestCase {
     func testThat_whenASectionIsInitialized_itHasZeroRows() {
