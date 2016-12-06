@@ -9,8 +9,8 @@
 import UIKit
 
 public class Raclette: NSObject {
-    public var scrollViewDelegate: UIScrollViewDelegate?
     public fileprivate(set) var sections = [SectionType]()
+    public var scrollViewDelegate: UIScrollViewDelegate?
     public var isDynamicRowHeightEnabled = true
 }
 
