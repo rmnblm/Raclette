@@ -30,7 +30,9 @@ public extension UITableView {
         guard let type = cellClass else {
             fatalError()
         }
-        self.register(type, forCellReuseIdentifier: String(describing: type))
+        let typeAsString = String(describing: type)
+        let nib = UINib(nibName: typeAsString, bundle: nil)
+        self.register(nib, forCellReuseIdentifier: typeAsString)
     }
 
     /// Gets or sets the delegate to redirect all calls to `UIScrollViewDelegate`.
