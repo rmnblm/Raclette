@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'Raclette'
-  s.version = '1.1.0'
+  s.version = '1.1.1'
   s.license = 'MIT'
   s.homepage = 'https://github.com/rmnblm/Raclette.git'
   s.summary = '🧀 Let\'s get cheesy with Raclette, a UITableView extension to add rows and sections on-the-fly'
