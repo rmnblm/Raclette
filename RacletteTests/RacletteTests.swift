@@ -9,6 +9,7 @@
 import XCTest
 
 class RacletteTests: XCTestCase {
+
     func testThat_whenRacletteIsInitialized_itHasZeroSections() {
         let raclette = Raclette()
 

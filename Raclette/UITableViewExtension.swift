@@ -17,7 +17,6 @@ public extension UITableView {
                 let raclette = Raclette()
                 delegate = raclette
                 dataSource = raclette
-                register(UITableViewCell.self)
                 layer.setValue(raclette, forKey: instanceKey)
                 return raclette
             }
@@ -26,13 +25,22 @@ public extension UITableView {
     }
 
     // Registers a cell class using the name of the class as reuse identifier
-    public func register(_ cellClass: Swift.AnyClass?) {
-        guard let type = cellClass else {
-            fatalError()
-        }
-        let typeAsString = String(describing: type)
-        let nib = UINib(nibName: typeAsString, bundle: nil)
+    public func register<T: UITableViewCell>(_ cell: T.Type) {
+        let typeAsString = String(describing: T.self)
+        self.register(T.self, forCellReuseIdentifier: typeAsString)
+    }
+
+    // Registers a UINib using the name of the class as reuse identifier
+    public func registerNib<T: UITableViewCell>(_ cell: T.Type, bundle: Bundle? = nil) {
+        let typeAsString = String(describing: T.self)
+        let nib = UINib(nibName: typeAsString, bundle: bundle)
         self.register(nib, forCellReuseIdentifier: typeAsString)
+    }
+
+    // Dequeues an already allocated cell from the TableView
+    public func dequeueReusableCell<T: UITableViewCell>(_ type: T.Type) -> T? {
+        let typeAsString = String(describing: T.self)
+        return self.dequeueReusableCell(withIdentifier: typeAsString) as? T
     }
 
     /// Gets or sets the delegate to redirect all calls to `UIScrollViewDelegate`.
