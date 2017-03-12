@@ -85,8 +85,9 @@ pod 'Raclette'
 
 ## Documentation
 
-- Enable/disable row highlighting globally with `tableView.isRowHighighlightingEnabled = false`
-- Enable/disable dynamic row height globally with `tableView.isDynamicRowHeightEnabled = false`
+- Enable/disable row highlighting globally with `tableView.isRowHighighlightingEnabled`
+- Enable/disable dynamic row height globally with `tableView.isDynamicRowHeightEnabled `
+- Enable/disable automatic row deselection with `tableView.isAutomaticRowDeselectionEnabled`
 - Redirect the scroll view delegate to the calling instance with `tableView.scrollViewDelegate = self` (note that `UIScrollViewDelegate` must be implemented in the class header)
 
 
