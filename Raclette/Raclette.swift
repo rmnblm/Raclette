@@ -13,6 +13,7 @@ public class Raclette: NSObject {
     public var scrollViewDelegate: UIScrollViewDelegate?
     public var isRowHighlightingEnabled = true
     public var isDynamicRowHeightEnabled = true
+    public var isAutomaticRowDeselectionEnabled = true
 }
 
 extension Raclette {
@@ -175,6 +176,10 @@ extension Raclette: UITableViewDelegate {
         }
 
         delegate.didSelect(tableView, cell: cell, indexPath: indexPath)
+
+        if isAutomaticRowDeselectionEnabled {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
     }
 
     public func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {

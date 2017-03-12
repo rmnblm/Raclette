@@ -72,6 +72,16 @@ public extension UITableView {
             raclette.isDynamicRowHeightEnabled = newValue
         }
     }
+
+    // Gets or sets a boolean value if a row should be deselected automatically (after selection)
+    public var isAutomaticRowDeselectionEnabled: Bool {
+        get {
+            return raclette.isAutomaticRowDeselectionEnabled
+        }
+        set {
+            raclette.isAutomaticRowDeselectionEnabled = newValue
+        }
+    }
     
     /// Adds a row to the last section.
     @discardableResult public func addRow(_ row: RowType? = nil) -> RowType {
