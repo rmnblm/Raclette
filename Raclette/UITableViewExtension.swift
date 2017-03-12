@@ -25,12 +25,15 @@ public extension UITableView {
     }
 
     // Registers a cell class using the name of the class as reuse identifier
-    public func register(_ cellClass: Swift.AnyClass?) {
-        guard let type = cellClass else {
-            fatalError()
-        }
-        let typeAsString = String(describing: type)
-        let nib = UINib(nibName: typeAsString, bundle: nil)
+    public func register<T: UITableViewCell>(_ cell: T.Type) {
+        let typeAsString = String(describing: T.self)
+        self.register(T.self, forCellReuseIdentifier: typeAsString)
+    }
+
+    // Registers a UINib using the name of the class as reuse identifier
+    public func registerNib<T: UITableViewCell>(_ cell: T.Type, bundle: Bundle? = nil) {
+        let typeAsString = String(describing: T.self)
+        let nib = UINib(nibName: typeAsString, bundle: bundle)
         self.register(nib, forCellReuseIdentifier: typeAsString)
     }
 
