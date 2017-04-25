@@ -164,7 +164,7 @@ tableView.createSection { section in
 
 ## Credits
 
-Raclette was heavily inspired by [Shoyu](https://github.com/yukiasai/Shoyu) and [TableManager)(https://github.com/Morbix/TableManager).
+Raclette was heavily inspired by [Shoyu](https://github.com/yukiasai/Shoyu) and [TableManager](https://github.com/Morbix/TableManager).
 
 ## License
 
