@@ -29,28 +29,26 @@ Raclette makes it easy for you to mutate your `UITableView` in seconds.
 ``` swift
 tableView.isRowHighlightingEnabled = true
 tableView.createSection { section in 
-	section.headerTitle = "My section header"
-    section.footerTitle = "My section footer"
-    section.createRow { row in
-      	row.configuration = { cell in
-          	cell.textLabel?.text = "Hello World!"
-      	}
-      	row.shouldHighlight = { cell, _ in
-      		return false // overrides global setting
-      	}
-      	row.didSelect = { cell, tableInfo in
-	      	cell.textLabel?.text = "Selected"
-      		tableInfo.tableView.deselectRow(at: tableInfo.indexPath, animated: true)
-      	}
+  section.headerTitle = "My section header"
+  section.footerTitle = "My section footer"
+  section.createRow { row in
+    row.configuration = { cell in
+      cell.textLabel?.text = "Hello World!"
     }
+    row.shouldHighlight = { cell, _ in
+      return false // overrides global setting
+    }
+    row.didSelect = { cell, tableInfo in
+      cell.textLabel?.text = "Selected"
+      tableInfo.tableView.deselectRow(at: tableInfo.indexPath, animated: true)
+    }
+  }
 }
 ```
 
 **Result**
 
  ![quickstart_result](Resources/quickstart_result.png)
-
-
 
 For more examples please take a look at the [example project](./RacletteExample/ViewController.swift).
 
@@ -64,10 +62,6 @@ For more examples please take a look at the [example project](./RacletteExample/
 * Redirection for `UIScrollViewDelegate` available
 * No need to worry about `UITableViewDelegate` and `UITableViewDataSource` implementation
 
-
-
-
-
 ## Installation
 
 Raclette is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
@@ -76,8 +70,6 @@ Raclette is available through [CocoaPods](http://cocoapods.org). To install it, 
 pod 'Raclette'
 ```
 
-
-
 ## Documentation
 
 - Enable/disable row highlighting globally with `tableView.isRowHighighlightingEnabled`
@@ -85,15 +77,13 @@ pod 'Raclette'
 - Enable/disable automatic row deselection with `tableView.isAutomaticRowDeselectionEnabled`
 - Redirect the scroll view delegate to the calling instance with `tableView.scrollViewDelegate = self` (note that `UIScrollViewDelegate` must be implemented in the class header)
 
-
-
 ### Rows
 
 Rows can either be added to a table with or without specifying a section. If you don't specify a section, Raclette adds the row to the last section of the table. If you didn't add a section before, Raclette creates a default one for you.
 
 ``` swift
 tableView.createRow { row in
-	row.height = 50
+  row.height = 50
 }
 ```
 
@@ -119,10 +109,10 @@ Dynamic height is globally **enabled** for all cells **by default**. Here's an e
 
 ```swift
 tableView.createRow { row in
-  	row.configuration = { cell in
-  		cell.textLabel?.numberOfLines = 0
-  		cell.textLabel?.text = "Very long text..."
-  	}
+  row.configuration = { cell in
+    cell.textLabel?.numberOfLines = 0
+    cell.textLabel?.text = "Very long text..."
+  }
 }
 ```
 
@@ -130,7 +120,7 @@ You can turn off dynamic height for specific rows.
 
 ```swift
 tableView.createRow { row in
-  	row.dynamicHeight = false
+  row.dynamicHeight = false
 }
 ```
 
@@ -152,13 +142,13 @@ Custom cells must inherit from `UITableViewCell` and can be used like this:
 
 ```swift
 class CustomCell: UITableViewCell {
-	@IBOutlet weak var testLabel: UILabel!
+  @IBOutlet weak var testLabel: UILabel!
 }
 
 tableView.createRow { (row: Row<CustomCell>) in
-	row.configuration = { cell in
-		cell.testLabel.text = "My Test Label"
-	}
+  row.configuration = { cell in
+    cell.testLabel.text = "My Test Label"
+  }
 }
 ```
 
@@ -168,17 +158,13 @@ Adding a section is as easy as adding a row.
 
 ```swift
 tableView.createSection { section in
-	section.headerTitle = "My Section Title"
+  section.headerTitle = "My Section Title"
 }
 ```
 
-
-
 ## Credits
 
-Raclette was heavily inspired by [Shoyu](https://github.com/yukiasai/Shoyu), [TableManager](https://github.com/Morbix/TableManager) and [Hakuba](https://github.com/nghialv/Hakuba).
-
-
+Raclette was heavily inspired by [Shoyu](https://github.com/yukiasai/Shoyu) and [TableManager)(https://github.com/Morbix/TableManager).
 
 ## License
 
