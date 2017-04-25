@@ -11,9 +11,7 @@
 
 > Raclette (pronounced _ruck-lett_ in English) is a national dish of Switzerland. The traditional dish can be described as melted cheese eaten with boiled (or roasted) potatoes with small gherkins and pickled onions.
 
-
-
-## Contents
+## Contents
 
 * [Quick Start](#quickstart)
 * [Features](#features)
@@ -22,10 +20,7 @@
 * [Credits](#credits)
 * [License](#license)
 
-
-
-
-## Quick Start
+## Quickstart
 
 Raclette makes it easy for you to mutate your `UITableView` in seconds. 
 
@@ -167,9 +162,7 @@ tableView.createRow { (row: Row<CustomCell>) in
 }
 ```
 
-
-
-### Sections
+### Sections
 
 Adding a section is as easy as adding a row.
 
