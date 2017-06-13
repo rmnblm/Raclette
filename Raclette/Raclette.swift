@@ -14,6 +14,22 @@ public class Raclette: NSObject {
   public var isRowHighlightingEnabled = true
   public var isDynamicRowHeightEnabled = true
   public var isAutomaticRowDeselectionEnabled = true
+
+  private unowned let tableView: UITableView
+
+  public init(tableView: UITableView) {
+    self.tableView = tableView
+    super.init()
+
+    tableView.delegate = self
+    tableView.dataSource = self
+  }
+
+  deinit {
+    tableView.delegate = nil
+    tableView.dataSource = nil
+    scrollViewDelegate = nil
+  }
 }
 
 extension Raclette {

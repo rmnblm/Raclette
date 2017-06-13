@@ -26,9 +26,17 @@ Raclette makes it easy for you to mutate your `UITableView` in seconds.
 
 **Example**
 
+The first thing to do is to wrap your UITableView with Raclette
+
 ``` swift
-tableView.isRowHighlightingEnabled = true
-tableView.createSection { section in 
+let raclette = Raclette(tableView: tableView)
+```
+
+Done. You're good to go! 🎉
+
+``` swift
+raclette.isRowHighlightingEnabled = true
+raclette.createSection { section in 
   section.headerTitle = "My section header"
   section.footerTitle = "My section footer"
   section.createRow { row in
@@ -82,7 +90,7 @@ pod 'Raclette'
 Rows can either be added to a table with or without specifying a section. If you don't specify a section, Raclette adds the row to the last section of the table. If you didn't add a section before, Raclette creates a default one for you.
 
 ``` swift
-tableView.createRow { row in
+raclette.createRow { row in
   row.height = 50
 }
 ```
@@ -108,7 +116,7 @@ Cells are the actual UI representation of a row.
 Dynamic height is globally **enabled** for all cells **by default**. Here's an example of how to use and benefit from the dynamic height feature (using the default `UITableViewCell` class):
 
 ```swift
-tableView.createRow { row in
+raclette.createRow { row in
   row.configuration = { cell in
     cell.textLabel?.numberOfLines = 0
     cell.textLabel?.text = "Very long text..."
@@ -119,7 +127,7 @@ tableView.createRow { row in
 You can turn off dynamic height for specific rows.
 
 ```swift
-tableView.createRow { row in
+raclette.createRow { row in
   row.dynamicHeight = false
 }
 ```
@@ -127,7 +135,7 @@ tableView.createRow { row in
 Or you can turn off dynamic row height globally.
 
 ```swift
-tableView.isDynamicRowHeightEnabled = false
+raclette.isDynamicRowHeightEnabled = false
 ```
 
 In order to get dynamic height working with customized cells, you have to get your constraints right.
@@ -145,7 +153,7 @@ class CustomCell: UITableViewCell {
   @IBOutlet weak var testLabel: UILabel!
 }
 
-tableView.createRow { (row: Row<CustomCell>) in
+raclette.createRow { (row: Row<CustomCell>) in
   row.configuration = { cell in
     cell.testLabel.text = "My Test Label"
   }
@@ -157,7 +165,7 @@ tableView.createRow { (row: Row<CustomCell>) in
 Adding a section is as easy as adding a row.
 
 ```swift
-tableView.createSection { section in
+raclette.createSection { section in
   section.headerTitle = "My Section Title"
 }
 ```
