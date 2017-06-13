@@ -7,10 +7,11 @@
 //
 
 public protocol SectionType {
-    var rows: [RowType] { get }
-    var headerTitle: String? { get set }
-    var footerTitle: String? { get set }
-    @discardableResult func addRow(_ row: RowType?) -> RowType
-    @discardableResult func createRow<T>(_ closure: ((Row<T>) -> Void)) -> RowType
-    func clearRows()
+  var rows: [RowType] { get }
+  var headerTitle: String? { get set }
+  var footerTitle: String? { get set }
+  @discardableResult func addRow(_ row: RowType?) -> RowType
+  @discardableResult func createRow<T>(_ closure: ((Row<T>) -> Void)) -> RowType
+  func clearRows()
 }
+

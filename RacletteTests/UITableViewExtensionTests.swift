@@ -11,13 +11,13 @@ import UIKit
 
 class UITableViewExtensionTests: XCTestCase {
 
-    func testThat_whenRegisteringACell_itCanBeDequeued() {
-        let tableView = UITableView()
+  func testThat_whenRegisteringACell_itCanBeDequeued() {
+    let tableView = UITableView()
 
-        XCTAssertNil(tableView.dequeueReusableCell(TestCell.self))
+    XCTAssertNil(tableView.dequeueReusableCell(TestCell.self))
 
-        tableView.register(TestCell.self)
+    tableView.register(TestCell.self)
 
-        XCTAssertNotNil(tableView.dequeueReusableCell(TestCell.self))
-    }
+    XCTAssertNotNil(tableView.dequeueReusableCell(TestCell.self))
+  }
 }

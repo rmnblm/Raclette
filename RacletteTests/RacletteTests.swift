@@ -10,80 +10,81 @@ import XCTest
 
 class RacletteTests: XCTestCase {
 
-    func testThat_whenRacletteIsInitialized_itHasZeroSections() {
-        let raclette = Raclette()
+  func testThat_whenRacletteIsInitialized_itHasZeroSections() {
+    let raclette = Raclette()
 
-        XCTAssertEqual(raclette.sections.count, 0)
+    XCTAssertEqual(raclette.sections.count, 0)
+  }
+
+  func testThat_whenAddingASingleSection_itHasOneSection() {
+    let raclette = Raclette()
+    raclette.addSection()
+
+    XCTAssertEqual(raclette.sections.count, 1)
+  }
+
+  func testThat_whenAddingMultipleSections_itHasMultipleSections() {
+    let times = 10
+    let raclette = Raclette()
+
+    (1...times).forEach { number in
+      raclette.addSection()
     }
 
-    func testThat_whenAddingASingleSection_itHasOneSection() {
-        let raclette = Raclette()
-        raclette.addSection()
+    XCTAssertEqual(raclette.sections.count, 10)
+  }
 
-        XCTAssertEqual(raclette.sections.count, 1)
-    }
+  func testThat_whenAddingARowWithoutASection_itAutomaticallyCreatesASection() {
+    let raclette = Raclette()
+    raclette.addRow()
 
-    func testThat_whenAddingMultipleSections_itHasMultipleSections() {
-        let times = 10
-        let raclette = Raclette()
+    XCTAssertEqual(raclette.sections.count, 1)
 
-        (1...times).forEach { number in
-            raclette.addSection()
-        }
+    let section = raclette.lastSection()
+    XCTAssertEqual(section.rows.count, 1)
+  }
 
-        XCTAssertEqual(raclette.sections.count, 10)
-    }
+  func testThat_whenAddingMultipleSectionsAndRows_itHasACorrectRowCount() {
+    let times = 10
+    let raclette = Raclette()
 
-    func testThat_whenAddingARowWithoutASection_itAutomaticallyCreatesASection() {
-        let raclette = Raclette()
+    (1...times).forEach { number in
+      raclette.addSection()
+      (1...times).forEach { number in
         raclette.addRow()
-
-        XCTAssertEqual(raclette.sections.count, 1)
-
-        let section = raclette.lastSection()
-        XCTAssertEqual(section.rows.count, 1)
+      }
     }
 
-    func testThat_whenAddingMultipleSectionsAndRows_itHasACorrectRowCount() {
-        let times = 10
-        let raclette = Raclette()
+    XCTAssertEqual(raclette.sections.count, 10)
+    XCTAssertEqual(raclette.rowCount, times * times)
+  }
 
-        (1...times).forEach { number in
-            raclette.addSection()
-            (1...times).forEach { number in
-                raclette.addRow()
-            }
-        }
+  func testThat_whenClearingAllSections_itHasZeroSectionsAndRows() {
+    let raclette = Raclette()
+    raclette.addRow()
 
-        XCTAssertEqual(raclette.sections.count, 10)
-        XCTAssertEqual(raclette.rowCount, times * times)
-    }
+    XCTAssertEqual(raclette.sections.count, 1)
+    XCTAssertEqual(raclette.rowCount, 1)
 
-    func testThat_whenClearingAllSections_itHasZeroSectionsAndRows() {
-        let raclette = Raclette()
-        raclette.addRow()
+    raclette.clearSections()
 
-        XCTAssertEqual(raclette.sections.count, 1)
-        XCTAssertEqual(raclette.rowCount, 1)
+    XCTAssertEqual(raclette.sections.count, 0)
+    XCTAssertEqual(raclette.rowCount, 0)
+  }
 
-        raclette.clearSections()
+  func testThat_whenAccessingASectionByInvalidIndex_itReturnsNil() {
+    let raclette = Raclette()
 
-        XCTAssertEqual(raclette.sections.count, 0)
-        XCTAssertEqual(raclette.rowCount, 0)
-    }
+    XCTAssertEqual(raclette.sections.count, 0)
+    XCTAssertNil(raclette.section(at: 1))
+  }
 
-    func testThat_whenAccessingASectionByInvalidIndex_itReturnsNil() {
-        let raclette = Raclette()
+  func testThat_whenAccessingASectionByValidIndex_itReturnsNil() {
+    let raclette = Raclette()
+    raclette.addSection()
 
-        XCTAssertEqual(raclette.sections.count, 0)
-        XCTAssertNil(raclette.section(at: 1))
-    }
-
-    func testThat_whenAccessingASectionByValidIndex_itReturnsNil() {
-        let raclette = Raclette()
-        raclette.addSection()
-
-        XCTAssertEqual(raclette.sections.count, 1)
-        XCTAssertNotNil(raclette.section(at: 0))
-    }
+    XCTAssertEqual(raclette.sections.count, 1)
+    XCTAssertNotNil(raclette.section(at: 0))
+  }
 }
+

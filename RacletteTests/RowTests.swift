@@ -9,51 +9,52 @@
 import XCTest
 
 class RowTests: XCTestCase {
-    func testThat_whenCellIsConfigured_itUsesTheConfigurationClosure() {
-        var configured = false
-        let row = Row()
-        row.configuration = { cell in
-            configured = true
-        }
-
-        XCTAssertFalse(configured)
-
-        row.configure(UITableViewCell())
-        XCTAssertTrue(configured)
+  func testThat_whenCellIsConfigured_itUsesTheConfigurationClosure() {
+    var configured = false
+    let row = Row()
+    row.configuration = { cell in
+      configured = true
     }
 
-    func testThat_whenSettingTheReuseIdentifier_itIsTheSameAfterConfiguration() {
-        let staticIdentifier = "MyCell"
-        let row = Row()
-        row.reuseIdentifier = staticIdentifier
+    XCTAssertFalse(configured)
 
-        XCTAssertEqual(staticIdentifier, row.reuseIdentifier)
+    row.configure(UITableViewCell())
+    XCTAssertTrue(configured)
+  }
 
-        row.configure(UITableViewCell())
-        XCTAssertEqual(staticIdentifier, row.reuseIdentifier)
-    }
+  func testThat_whenSettingTheReuseIdentifier_itIsTheSameAfterConfiguration() {
+    let staticIdentifier = "MyCell"
+    let row = Row()
+    row.reuseIdentifier = staticIdentifier
 
-    func testThat_whenSettingTheReuseIdentifier_itIsTheSameAfterConfigurationOfACustomCell() {
-        let staticIdentifier = "MyCell"
-        let row = Row()
-        row.reuseIdentifier = staticIdentifier
+    XCTAssertEqual(staticIdentifier, row.reuseIdentifier)
 
-        XCTAssertEqual(staticIdentifier, row.reuseIdentifier)
+    row.configure(UITableViewCell())
+    XCTAssertEqual(staticIdentifier, row.reuseIdentifier)
+  }
 
-        row.configure(CustomCell())
-        XCTAssertEqual(staticIdentifier, row.reuseIdentifier)
-    }
+  func testThat_whenSettingTheReuseIdentifier_itIsTheSameAfterConfigurationOfACustomCell() {
+    let staticIdentifier = "MyCell"
+    let row = Row()
+    row.reuseIdentifier = staticIdentifier
 
-    func testThat_whenNotSettingTheReuseIdentifier_itIsTypeNameOfTheConfiguredCell() {
-        let expectedIdentifier = "CustomCell"
-        let row = Row<CustomCell>()
-        row.configuration = { cell in }
+    XCTAssertEqual(staticIdentifier, row.reuseIdentifier)
 
-        XCTAssertEqual(expectedIdentifier, row.reuseIdentifier)
+    row.configure(CustomCell())
+    XCTAssertEqual(staticIdentifier, row.reuseIdentifier)
+  }
 
-        row.configure(CustomCell())
-        XCTAssertEqual(expectedIdentifier, row.reuseIdentifier)
-    }
+  func testThat_whenNotSettingTheReuseIdentifier_itIsTypeNameOfTheConfiguredCell() {
+    let expectedIdentifier = "CustomCell"
+    let row = Row<CustomCell>()
+    row.configuration = { cell in }
 
-    class CustomCell: UITableViewCell { }
+    XCTAssertEqual(expectedIdentifier, row.reuseIdentifier)
+
+    row.configure(CustomCell())
+    XCTAssertEqual(expectedIdentifier, row.reuseIdentifier)
+  }
+
+  class CustomCell: UITableViewCell { }
 }
+
