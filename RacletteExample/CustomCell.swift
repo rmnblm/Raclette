@@ -10,17 +10,18 @@ import UIKit
 
 public class CustomCell: UITableViewCell {
 
-    private func commonInit() {
-        self.backgroundColor = UIColor.green
-    }
+  private func commonInit() {
+    self.backgroundColor = UIColor.green
+  }
 
-    public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        commonInit()
-    }
-    
-    public required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        commonInit()
-    }
+  public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    super.init(style: style, reuseIdentifier: reuseIdentifier)
+    commonInit()
+  }
+
+  public required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+    commonInit()
+  }
 }
+
