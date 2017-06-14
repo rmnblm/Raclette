@@ -15,7 +15,7 @@ public class Raclette: NSObject {
   public var isDynamicRowHeightEnabled = true
   public var isAutomaticRowDeselectionEnabled = true
 
-  private unowned let tableView: UITableView
+  private weak var tableView: UITableView?
 
   public init(tableView: UITableView) {
     self.tableView = tableView
@@ -25,8 +25,8 @@ public class Raclette: NSObject {
   }
 
   deinit {
-    tableView.delegate = nil
-    tableView.dataSource = nil
+    tableView?.delegate = nil
+    tableView?.dataSource = nil
     scrollViewDelegate = nil
   }
 }
