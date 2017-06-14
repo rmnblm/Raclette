@@ -10,7 +10,7 @@ import UIKit
 
 public class Raclette: NSObject {
   public fileprivate(set) var sections = [SectionType]()
-  public var scrollViewDelegate: UIScrollViewDelegate?
+  public weak var scrollViewDelegate: UIScrollViewDelegate?
   public var isRowHighlightingEnabled = true
   public var isDynamicRowHeightEnabled = true
   public var isAutomaticRowDeselectionEnabled = true
@@ -20,7 +20,6 @@ public class Raclette: NSObject {
   public init(tableView: UITableView) {
     self.tableView = tableView
     super.init()
-
     tableView.delegate = self
     tableView.dataSource = self
   }
