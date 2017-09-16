@@ -20,7 +20,6 @@ class ViewController: UIViewController {
     super.viewDidLoad()
 
     tableView.tableFooterView = UIView()
-    tableView.register(UITableViewCell.self, forCellReuseIdentifier: String(describing: UITableViewCell.self))
     tableView.register(CustomCell.self, forCellReuseIdentifier: String(describing: CustomCell.self))
 
     var firstSection = raclette.addSection()

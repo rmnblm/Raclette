@@ -20,6 +20,7 @@ public class Raclette: NSObject {
   public init(tableView: UITableView) {
     self.tableView = tableView
     super.init()
+    tableView.register(UITableViewCell.self, forCellReuseIdentifier: String(describing: UITableViewCell.self))
     tableView.delegate = self
     tableView.dataSource = self
   }
