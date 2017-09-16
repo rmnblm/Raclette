@@ -11,13 +11,13 @@ import XCTest
 class RacletteTests: XCTestCase {
 
   func testThat_whenRacletteIsInitialized_itHasZeroSections() {
-    let raclette = Raclette()
+    let raclette = Raclette(tableView: UITableView())
 
     XCTAssertEqual(raclette.sections.count, 0)
   }
 
   func testThat_whenAddingASingleSection_itHasOneSection() {
-    let raclette = Raclette()
+    let raclette = Raclette(tableView: UITableView())
     raclette.addSection()
 
     XCTAssertEqual(raclette.sections.count, 1)
@@ -25,7 +25,7 @@ class RacletteTests: XCTestCase {
 
   func testThat_whenAddingMultipleSections_itHasMultipleSections() {
     let times = 10
-    let raclette = Raclette()
+    let raclette = Raclette(tableView: UITableView())
 
     (1...times).forEach { number in
       raclette.addSection()
@@ -35,7 +35,7 @@ class RacletteTests: XCTestCase {
   }
 
   func testThat_whenAddingARowWithoutASection_itAutomaticallyCreatesASection() {
-    let raclette = Raclette()
+    let raclette = Raclette(tableView: UITableView())
     raclette.addRow()
 
     XCTAssertEqual(raclette.sections.count, 1)
@@ -46,7 +46,7 @@ class RacletteTests: XCTestCase {
 
   func testThat_whenAddingMultipleSectionsAndRows_itHasACorrectRowCount() {
     let times = 10
-    let raclette = Raclette()
+    let raclette = Raclette(tableView: UITableView())
 
     (1...times).forEach { number in
       raclette.addSection()
@@ -60,7 +60,7 @@ class RacletteTests: XCTestCase {
   }
 
   func testThat_whenClearingAllSections_itHasZeroSectionsAndRows() {
-    let raclette = Raclette()
+    let raclette = Raclette(tableView: UITableView())
     raclette.addRow()
 
     XCTAssertEqual(raclette.sections.count, 1)
@@ -73,14 +73,14 @@ class RacletteTests: XCTestCase {
   }
 
   func testThat_whenAccessingASectionByInvalidIndex_itReturnsNil() {
-    let raclette = Raclette()
+    let raclette = Raclette(tableView: UITableView())
 
     XCTAssertEqual(raclette.sections.count, 0)
     XCTAssertNil(raclette.section(at: 1))
   }
 
   func testThat_whenAccessingASectionByValidIndex_itReturnsNil() {
-    let raclette = Raclette()
+    let raclette = Raclette(tableView: UITableView())
     raclette.addSection()
 
     XCTAssertEqual(raclette.sections.count, 1)
